@@ -18,54 +18,57 @@ class DetailScreenRowButtons extends StatelessWidget {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
 
-    return SizedBox(
-      height: _height * 0.15,
-      width: _width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              DetailScreenCircleBottomButton(
-                backGroundColor: Colors.greenAccent,
-                iconColor: Colors.green,
-                iconPath: iconCarPageCall,
-                onPressed: () {},
-              ),
-              DetailScreenCircleBottomButton(
-                backGroundColor: Colors.blueAccent,
-                iconColor: mainColor,
-                iconPath: iconCarPageChatByWHatsApp,
-                onPressed: () {},
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              DetailScreenBottomIconButton(
-                buttonColor: Colors.white,
-                buttonText: "إحجز سيارتك",
-                iconColor: mainColor,
-                iconPath: iconCarPageBook,
-                textColor: mainColor,
-                onPressed: () {},
-              ),
-              SizedBox(
-                width: _width * 0.015,
-              ),
-              DetailScreenBottomIconButton(
-                buttonColor: mainColor,
-                buttonText: "موقع السيارة",
-                iconColor: Colors.white,
-                iconPath: iconCarPageLocation,
-                textColor: Colors.white,
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: SizedBox(
+        height: _height * 0.15,
+        width: _width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DetailScreenCircleBottomButton(
+                  backGroundColor: Colors.greenAccent,
+                  iconColor: Colors.green,
+                  iconPath: iconCarPageCall,
+                  onPressed: () {},
+                ),
+                DetailScreenCircleBottomButton(
+                  backGroundColor: Colors.blueAccent,
+                  iconColor: mainColor,
+                  iconPath: iconCarPageChatByWHatsApp,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DetailScreenBottomIconButton(
+                  buttonColor: mainColor,
+                  buttonText: "موقع السيارة",
+                  iconColor: Colors.white,
+                  iconPath: iconCarPageLocation,
+                  textColor: Colors.white,
+                  onPressed: () {},
+                ),
+                SizedBox(
+                  width: _width * 0.015,
+                ),
+                DetailScreenBottomIconButton(
+                  buttonColor: Colors.white,
+                  buttonText: "إحجز سيارتك",
+                  iconColor: mainColor,
+                  iconPath: iconCarPageBook,
+                  textColor: mainColor,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -123,7 +126,7 @@ class DetailScreenBottomIconButton extends StatelessWidget {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: _height * 0.07,
+      height: _height * 0.055,
       width: _width * 0.35,
       child: ElevatedButton.icon(
         onPressed: onPressed,
@@ -145,7 +148,7 @@ class DetailScreenBottomIconButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           primary: buttonColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20),
             side: const BorderSide(
               color: mainColor,
               width: 2,
@@ -219,13 +222,13 @@ class DetailScreenCarSupplier extends StatelessWidget {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
-        height: _height * 0.09,
+        height: _height * 0.065,
         width: double.infinity,
         // color: const Color(0xffd9dee6),
         decoration: BoxDecoration(
-          color: Colors.teal.withOpacity(0.3),
+          color: Colors.grey.withOpacity(0.3),
           borderRadius: BorderRadius.circular(20),
         ),
         child: ListTile(
@@ -238,9 +241,9 @@ class DetailScreenCarSupplier extends StatelessWidget {
             ),
           ),
           leading: Container(
-            height: _height * 0.10,
-            width: _width * 0.15,
-            padding: const EdgeInsets.all(5),
+            height: _height * 0.05,
+            width: _width * 0.10,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.white,
@@ -283,7 +286,7 @@ class DetailScreenCarTextDetails extends StatelessWidget {
       child: Text(
         detailText,
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 15,
           color: Colors.black,
           fontWeight: FontWeight.w600,
           // height: 20,
@@ -360,7 +363,7 @@ class DetailScreenCarGuaranteedToBar extends StatelessWidget {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
         height: _height * 0.065,
         width: _width,
@@ -369,6 +372,7 @@ class DetailScreenCarGuaranteedToBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: ListTile(
+          horizontalTitleGap: 20,
           leading: SvgPicture.asset(
             iconHomeAd4,
             height: _height * 0.033,
@@ -452,7 +456,7 @@ class DetailScreenCarInfoBar extends StatelessWidget {
           color: Colors.white,
         ),
         Positioned(
-          top: -15,
+          top: -35,
           left: 0,
           right: 0,
           child: Row(
@@ -654,13 +658,17 @@ class DetailScreenOtherCarItem extends StatelessWidget {
     return GestureDetector(
       onTap: onCarItemPress,
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           SizedBox(
-            height: _height * 0.20,
+            height: _height * 0.25,
             width: _width * 0.49,
             child: Image.asset(
               carImage,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.bottomCenter,
+              height: 20,
+              width: 20,
             ),
           ),
           Positioned(
@@ -677,13 +685,14 @@ class DetailScreenOtherCarItem extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: mainColor,
+                    // fontSize: 13,
                   ),
                 ),
               ),
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: -10,
             left: 0,
             right: 0,
             child: SizedBox(

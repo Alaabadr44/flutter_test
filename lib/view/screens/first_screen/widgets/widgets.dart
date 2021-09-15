@@ -412,8 +412,8 @@ class HomeDetailsCarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     return Container(
-      width: _width * 0.122,
-      color: Colors.white.withOpacity(0.7),
+      width: _width * 0.120,
+      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -432,7 +432,7 @@ class HomeDetailsCarItem extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 13,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w200,
                 ),
                 textDirection: TextDirection.rtl,
               ),
