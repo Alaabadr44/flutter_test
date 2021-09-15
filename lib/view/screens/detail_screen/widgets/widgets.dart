@@ -43,29 +43,28 @@ class DetailScreenRowButtons extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                DetailScreenBottomIconButton(
-                  buttonColor: mainColor,
-                  buttonText: "موقع السيارة",
-                  iconColor: Colors.white,
-                  iconPath: iconCarPageLocation,
-                  textColor: Colors.white,
-                  onPressed: () {},
-                ),
-                SizedBox(
-                  width: _width * 0.015,
-                ),
-                DetailScreenBottomIconButton(
-                  buttonColor: Colors.white,
-                  buttonText: "إحجز سيارتك",
-                  iconColor: mainColor,
-                  iconPath: iconCarPageBook,
-                  textColor: mainColor,
-                  onPressed: () {},
-                ),
-              ],
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  DetailScreenBottomIconButton(
+                    buttonColor: mainColor,
+                    buttonText: "موقع السيارة",
+                    iconColor: Colors.white,
+                    iconPath: iconCarPageLocation,
+                    textColor: Colors.white,
+                    onPressed: () {},
+                  ),
+                  DetailScreenBottomIconButton(
+                    buttonColor: Colors.white,
+                    buttonText: "إحجز سيارتك",
+                    iconColor: mainColor,
+                    iconPath: iconCarPageBook,
+                    textColor: mainColor,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -125,18 +124,30 @@ class DetailScreenBottomIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
+
+// just for solution for location icon
+    Icon? location = iconPath == iconCarPageLocation
+        ? Icon(
+            Icons.location_on_outlined,
+            color: Colors.white.withOpacity(0.45),
+            size: 25,
+          )
+        : null;
+
     return SizedBox(
       height: _height * 0.055,
-      width: _width * 0.35,
+      width: _width * 0.342,
       child: ElevatedButton.icon(
         onPressed: onPressed,
-        icon: SvgPicture.asset(
-          iconPath,
-          height: (_height * 0.07) * 0.5,
-          width: (_width * 0.35) * 0.05,
-          color: iconColor,
-          fit: BoxFit.cover,
-        ),
+        icon: location == null
+            ? SvgPicture.asset(
+                iconPath,
+                height: (_height * 0.07) * 0.5,
+                width: (_width * 0.35) * 0.05,
+                color: iconColor,
+                fit: BoxFit.cover,
+              )
+            : SizedBox(child: location),
         label: Text(
           buttonText,
           style: TextStyle(
@@ -451,14 +462,15 @@ class DetailScreenCarInfoBar extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          height: _height * 0.17,
+          height: _height * 0.10,
           width: 400,
           color: Colors.white,
         ),
-        Positioned(
-          top: -35,
-          left: 0,
-          right: 0,
+        Positioned.directional(
+          textDirection: TextDirection.rtl,
+          top: -((_height * 0.30) * 0.243),
+          start: 0,
+          end: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: const [
@@ -502,8 +514,8 @@ class DetailScreenCarInfoItem extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
 
-    double cardHeight = height * 0.195;
-    double cardWidth = _width * 0.29;
+    double cardHeight = height * 0.165;
+    double cardWidth = _width * 0.255;
 
     return Container(
       height: cardHeight,
@@ -526,7 +538,7 @@ class DetailScreenCarInfoItem extends StatelessWidget {
             infoWord,
             style: const TextStyle(
               color: Colors.black,
-              fontSize: 15,
+              fontSize: 13,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -555,51 +567,40 @@ class DetailScreenCarImageBar extends StatelessWidget {
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: _height * 0.33,
+      height: _height * 0.30,
       width: double.infinity,
       child: Stack(
         children: [
           SizedBox(
             child: Image.asset(image6),
           ),
-          Align(
-            alignment: AlignmentDirectional.topCenter,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+          Positioned.directional(
+            textDirection: TextDirection.rtl,
+            top: 10,
+            start: 5,
+            child: DetailScreenIconWidget(
+              iconPath: iconBackIcon,
+              onIconPress: backPress,
+            ),
+          ),
+          Positioned.directional(
+            textDirection: TextDirection.rtl,
+            top: 10,
+            end: 10,
+            child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    start: 20,
-                    end: 20,
-                    top: 29,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DetailScreenIconWidget(
-                        iconPath: iconBackIcon,
-                        onIconPress: backPress,
-                      ),
-                      Row(
-                        children: [
-                          DetailScreenIconWidget(
-                            iconPath: iconCarPageShare,
-                            onIconPress: () {},
-                          ),
-                          const SizedBox(width: 10),
-                          DetailScreenIconWidget(
-                            iconPath: iconCarPageFav,
-                            onIconPress: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                DetailScreenIconWidget(
+                  iconPath: iconCarPageShare,
+                  onIconPress: () {},
+                ),
+                const SizedBox(width: 10),
+                DetailScreenIconWidget(
+                  iconPath: iconCarPageFav,
+                  onIconPress: () {},
                 ),
               ],
             ),
-          ),
+          )
         ],
       ),
     );
@@ -671,10 +672,11 @@ class DetailScreenOtherCarItem extends StatelessWidget {
               width: 20,
             ),
           ),
-          Positioned(
+          Positioned.directional(
+            textDirection: TextDirection.rtl,
             top: 0,
-            left: 0,
-            right: 0,
+            start: 0,
+            end: 0,
             child: Container(
               width: 250,
               height: 20,
@@ -691,10 +693,11 @@ class DetailScreenOtherCarItem extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          Positioned.directional(
+            textDirection: TextDirection.rtl,
             bottom: -10,
-            left: 0,
-            right: 0,
+            start: 0,
+            end: 0,
             child: SizedBox(
               width: 290,
               height: 45,

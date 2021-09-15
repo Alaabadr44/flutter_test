@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../helper/functions.dart';
-import '../../Screens/first_Screen/first_Screen.dart';
+import '../first_screen/first_screen.dart';
 import 'widgets/widgets.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -28,9 +28,8 @@ class DetailScreen extends StatelessWidget {
                 ),
                 const DetailScreenCarInfoBar(),
                 const DetailScreenCarStatusAndSalaryBar(),
-                const SizedBox(height: 10),
                 const DetailScreenCarGuaranteedToBar(),
-                const SizedBox(height: 15),
+                const SizedBox(height: 9),
                 const DetailScreenCarSpecifications(),
                 const DetailScreenCarTextDetails(
                   detailText: """

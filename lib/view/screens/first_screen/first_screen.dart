@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test/constance/images.dart';
-import 'package:flutter_app_test/helper/functions.dart';
-import 'package:flutter_app_test/view/screens/detail_screen/detail_screen.dart';
 
+import '/view/screens/detail_screen/detail_screen.dart';
+import '../../../constance/images.dart';
+import '../../../helper/functions.dart';
 import 'widgets/widgets.dart';
 
 class FirstScreen extends StatelessWidget {
@@ -28,11 +28,11 @@ class FirstScreen extends StatelessWidget {
                 const FirstScreenAppBar(),
                 const CarsStoryBar(),
                 const HomeImageBar(imagePath: image4),
-                const SizedBox(height: 15),
+                const SizedBox(height: 5),
                 const HomeSearchBar(),
                 const SizedBox(height: 5),
                 const HomeOptionsBar(),
-                const SizedBox(height: 15),
+                // const SizedBox(height: 10),
                 //just for develope to just move into DetailScreen
                 GridCarsView(
                   onCarItemPress: () {

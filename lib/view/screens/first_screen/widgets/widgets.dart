@@ -16,37 +16,41 @@ class FirstScreenAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     double _hight = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    return Container(
-      height: _hight / 10,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            appBarBackGroundColorFirst,
-            appBarBackGroundColorSecond,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+    return Stack(
+      children: [
+        Container(
+          height: _hight / 10,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                appBarBackGroundColorFirst,
+                appBarBackGroundColorSecond,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
         ),
-      ),
-      padding: const EdgeInsetsDirectional.only(
-        start: 20,
-        end: 20,
-        top: 20,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
+        Positioned.directional(
+          top: (_hight / 10) / 2,
+          start: 10,
+          textDirection: TextDirection.rtl,
+          child: SizedBox(
             height: 25,
             width: _width * 0.05,
             child: SvgPicture.asset(iconHomeMenu),
           ),
-          const NotificationWidget(
+        ),
+        Positioned.directional(
+          top: (_hight / 10) / 2,
+          end: 10,
+          textDirection: TextDirection.rtl,
+          child: const NotificationWidget(
             notificationNum: 2,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -279,11 +283,11 @@ class GridCarsView extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, boxConstraints) {
         return SizedBox(
-          height: boxConstraints.constrainHeight(370),
+          height: boxConstraints.constrainHeight(650),
           width: 470,
           child: GridView.count(
             shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             crossAxisSpacing: 3,
             mainAxisSpacing: 1.5,
             crossAxisCount: 2,
